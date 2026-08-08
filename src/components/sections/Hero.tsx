@@ -62,7 +62,7 @@ export function Hero() {
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center gap-10 px-4 pb-24 pt-28 sm:px-6 sm:pt-32 lg:grid lg:grid-cols-[1fr_auto_auto] lg:items-center lg:gap-12 lg:px-8 lg:pb-28">
           <ProfileAvatar
             src={siteConfig.profile.image}
-            alt={`${siteConfig.name} profile photo`}
+            alt="Potharlanka Sesaank - Artificial Intelligence and Data Science Student"
             initials={siteConfig.profile.initials}
             className="order-1 lg:order-2"
           />

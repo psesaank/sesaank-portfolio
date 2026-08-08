@@ -25,17 +25,17 @@ export function ProfileAvatar({
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-      whileHover={{ scale: 1.05 }}
-      whileTap={{ scale: 1.02 }}
-      className={cn("relative h-[150px] w-[150px] shrink-0 sm:h-[180px] sm:w-[180px]", className)}
+      whileHover={{ scale: 1.04 }}
+      whileTap={{ scale: 1.01 }}
+      className={cn("relative mx-auto h-[130px] w-[130px] shrink-0 sm:h-[170px] sm:w-[170px] lg:h-[190px] lg:w-[190px]", className)}
     >
       <motion.div
-        animate={{ y: [0, -5, 0], rotate: [0, 1, 0] }}
+        animate={{ y: [0, -5, 0], rotate: [0, 1, 0], boxShadow: ["0 0 0 rgba(34,211,238,0.16)", "0 0 24px rgba(34,211,238,0.22)", "0 0 0 rgba(34,211,238,0.16)"] }}
         transition={{ duration: 5.5, repeat: Infinity, ease: "easeInOut" }}
         className="absolute inset-0 rounded-full p-[2px]"
         style={{
           background:
-            "linear-gradient(135deg, rgba(59,130,246,0.8), rgba(34,211,238,0.75), rgba(168,85,247,0.8))",
+            "linear-gradient(135deg, rgba(59,130,246,0.9), rgba(34,211,238,0.8), rgba(168,85,247,0.9))",
         }}
       />
 
@@ -59,10 +59,12 @@ export function ProfileAvatar({
             <Image
               src={src}
               alt={alt}
-              width={180}
-              height={180}
-              loading="lazy"
-              className="relative h-full w-full object-cover"
+              width={320}
+              height={320}
+              priority
+              sizes="(max-width: 640px) 130px, (max-width: 1024px) 170px, 190px"
+              quality={100}
+              className="relative h-full w-full object-cover object-center"
               onError={() => setHasError(true)}
             />
           ) : (
