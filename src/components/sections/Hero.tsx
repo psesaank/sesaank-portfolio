@@ -131,6 +131,7 @@ export function Hero() {
             >
               <GlassButton
                 href={siteConfig.links.resume}
+                external
                 icon={<FaFileAlt className="h-4 w-4 text-cyan-400" />}
                 className="sm:min-w-[140px]"
               >
