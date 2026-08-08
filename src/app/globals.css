@@ -1,26 +1,177 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #09090b;
+  --foreground: #fafafa;
+  --accent-cyan: #22d3ee;
+  --accent-violet: #8b5cf6;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-accent-cyan: var(--accent-cyan);
+  --color-accent-violet: var(--accent-violet);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
+}
+
+section[id] {
+  scroll-margin-top: 6rem;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-inter), system-ui, sans-serif;
+}
+
+::selection {
+  background: rgba(34, 211, 238, 0.3);
+  color: #fff;
+}
+
+/* Animated gradient heading: blue → cyan → purple */
+.gradient-heading {
+  background: linear-gradient(
+    90deg,
+    #3b82f6,
+    #22d3ee,
+    #a855f7,
+    #3b82f6
+  );
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradient-shift 8s ease infinite;
+}
+
+@keyframes gradient-shift {
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Aurora layers — GPU-friendly CSS animations */
+.aurora-layer {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(100px);
+  will-change: transform;
+}
+
+.aurora-layer-1 {
+  top: -20%;
+  left: -10%;
+  width: 55%;
+  height: 55%;
+  background: radial-gradient(circle, rgba(59, 130, 246, 0.35), transparent 70%);
+  animation: aurora-drift-1 22s ease-in-out infinite;
+}
+
+.aurora-layer-2 {
+  top: 10%;
+  right: -15%;
+  width: 60%;
+  height: 50%;
+  background: radial-gradient(circle, rgba(34, 211, 238, 0.25), transparent 70%);
+  animation: aurora-drift-2 28s ease-in-out infinite;
+}
+
+.aurora-layer-3 {
+  bottom: -10%;
+  left: 20%;
+  width: 50%;
+  height: 45%;
+  background: radial-gradient(circle, rgba(168, 85, 247, 0.3), transparent 70%);
+  animation: aurora-drift-3 25s ease-in-out infinite;
+}
+
+@keyframes aurora-drift-1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(8%, 5%) scale(1.08);
+  }
+  66% {
+    transform: translate(4%, -4%) scale(0.96);
+  }
+}
+
+@keyframes aurora-drift-2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(-6%, 8%) scale(1.05);
+  }
+  66% {
+    transform: translate(-3%, -5%) scale(0.94);
+  }
+}
+
+@keyframes aurora-drift-3 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(5%, -6%) scale(1.06);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gradient-heading {
+    animation: none;
+    background-position: 0% 50%;
+  }
+
+  .aurora-layer-1,
+  .aurora-layer-2,
+  .aurora-layer-3 {
+    animation: none;
+  }
+
+  .avatar-gradient-ring {
+    animation: none;
+  }
+}
+
+/* Profile avatar rotating gradient ring */
+.avatar-gradient-ring {
+  background: conic-gradient(
+    from 0deg,
+    #3b82f6,
+    #22d3ee,
+    #a855f7,
+    #6366f1,
+    #3b82f6
+  );
+  animation: avatar-ring-spin 4s linear infinite;
+}
+
+.avatar-gradient-ring::after {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border-radius: 9999px;
+  background: #09090b;
+}
+
+@keyframes avatar-ring-spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
