@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaAws, FaDatabase, FaGithub } from "react-icons/fa";
+import { FaAws, FaCheckCircle, FaDatabase, FaExternalLinkAlt } from "react-icons/fa";
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
 import { GlowingGrid } from "@/components/effects/GlowingGrid";
 import { NeuralNetwork } from "@/components/effects/NeuralNetwork";
@@ -10,21 +10,21 @@ const certifications = [
   {
     name: "AWS Certified Cloud Practitioner",
     issuer: "Amazon Web Services (AWS)",
-    category: "Cloud Computing",
+    credentialUrl: "https://cp.certmetrics.com/amazon/en/public/verify/credential/abd44635719340fe945a359ff0969166",
     icon: FaAws,
     accent: "from-cyan-400/20 via-cyan-300/10 to-violet-500/20",
   },
   {
     name: "AWS Certified Developer – Associate",
     issuer: "Amazon Web Services (AWS)",
-    category: "Cloud Development",
+    credentialUrl: "https://cp.certmetrics.com/amazon/en/public/verify/credential/87a7421add6e406283854588d7faab04",
     icon: FaAws,
     accent: "from-blue-400/20 via-cyan-300/10 to-purple-500/20",
   },
   {
     name: "MongoDB Associate Developer",
     issuer: "MongoDB",
-    category: "Database Development",
+    credentialUrl: "https://www.credly.com/badges/d7ff9979-5fb3-40c0-b66a-76def92bb006/public_url",
     icon: FaDatabase,
     accent: "from-violet-400/20 via-cyan-300/10 to-blue-500/20",
   },
@@ -77,30 +77,34 @@ export function Certifications() {
                 <div className="absolute inset-px rounded-[23px] border border-white/10" />
 
                 <div className="relative flex h-full flex-col">
-                  <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${cert.accent} text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.12)]`}>
-                    <Icon className="h-6 w-6" />
-                  </div>
+                  <div className="flex items-center justify-between gap-3">
+                    <div className={`flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br ${cert.accent} text-cyan-200 shadow-[0_0_25px_rgba(34,211,238,0.12)]`}>
+                      <Icon className="h-6 w-6" />
+                    </div>
 
-                  <div className="mt-5 flex items-start justify-between gap-3">
-                    <h3 className="text-xl font-semibold tracking-tight text-white">
-                      {cert.name}
-                    </h3>
-                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-cyan-300">
-                      {cert.category}
+                    <span className="inline-flex items-center gap-2 rounded-full border border-emerald-400/20 bg-emerald-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-emerald-300">
+                      <FaCheckCircle className="h-3.5 w-3.5" />
+                      Verified Credential
                     </span>
                   </div>
 
-                  <p className="mt-4 text-sm leading-7 text-zinc-400">{cert.issuer}</p>
+                  <h3 className="mt-6 text-xl font-semibold tracking-tight text-white">
+                    {cert.name}
+                  </h3>
+
+                  <p className="mt-3 text-sm leading-7 text-zinc-400">Issued by {cert.issuer}</p>
 
                   <div className="mt-8 flex items-end">
-                    <button
-                      type="button"
-                      className="inline-flex min-w-[150px] items-center justify-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2.5 text-sm font-medium text-cyan-200 transition-colors duration-300 hover:border-cyan-300/40 hover:bg-cyan-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+                    <a
+                      href={cert.credentialUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-w-[170px] items-center justify-center gap-2 rounded-full border border-cyan-400/20 bg-cyan-400/10 px-4 py-2.5 text-sm font-medium text-cyan-200 transition-all duration-300 hover:-translate-y-0.5 hover:border-cyan-300/40 hover:bg-cyan-400/20 hover:shadow-[0_0_20px_rgba(34,211,238,0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
                       aria-label={`View credential for ${cert.name}`}
                     >
-                      <FaGithub className="h-4 w-4" />
+                      <FaExternalLinkAlt className="h-4 w-4" />
                       View Credential
-                    </button>
+                    </a>
                   </div>
                 </div>
               </motion.article>

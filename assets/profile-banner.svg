@@ -1,0 +1,29 @@
+<svg width="1200" height="320" viewBox="0 0 1200 320" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#06111f"/>
+      <stop offset="50%" stop-color="#0d1b2e"/>
+      <stop offset="100%" stop-color="#1d1138"/>
+    </linearGradient>
+    <linearGradient id="stroke" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="50%" stop-color="#22d3ee"/>
+      <stop offset="100%" stop-color="#8b5cf6"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="320" rx="28" fill="url(#bg)"/>
+  <g opacity="0.25">
+    <path d="M90 230C180 140 260 210 340 150C420 90 500 80 590 132C680 184 760 220 860 180C940 150 1060 100 1110 80" stroke="url(#stroke)" stroke-width="2.2" fill="none"/>
+    <circle cx="157" cy="205" r="5" fill="#22d3ee"/>
+    <circle cx="340" cy="150" r="5" fill="#38bdf8"/>
+    <circle cx="590" cy="132" r="5" fill="#8b5cf6"/>
+    <circle cx="860" cy="180" r="5" fill="#22d3ee"/>
+    <circle cx="1065" cy="92" r="5" fill="#8b5cf6"/>
+  </g>
+  <rect x="80" y="70" width="1040" height="180" rx="24" fill="rgba(255,255,255,0.03)" stroke="rgba(255,255,255,0.12)"/>
+  <text x="102" y="152" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="42" font-weight="700" letter-spacing="2">POTHARLANKA SESAANK</text>
+  <text x="102" y="188" fill="#67e8f9" font-family="Segoe UI, Arial, sans-serif" font-size="22">Artificial Intelligence &amp; Data Science Student</text>
+  <text x="102" y="220" fill="#cbd5e1" font-family="Segoe UI, Arial, sans-serif" font-size="18">AI &amp; Machine Learning Enthusiast  •  Full Stack Developer  •  AWS Certified Cloud Practitioner</text>
+  <circle cx="1025" cy="152" r="56" fill="none" stroke="url(#stroke)" stroke-width="3"/>
+  <text x="1000" y="164" fill="#f8fafc" font-family="Segoe UI, Arial, sans-serif" font-size="32" font-weight="700">PS</text>
+</svg>
