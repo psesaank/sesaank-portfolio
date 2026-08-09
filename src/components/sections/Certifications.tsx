@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { FaAws, FaCheckCircle, FaDatabase, FaExternalLinkAlt } from "react-icons/fa";
+import { BsMicrosoft } from "react-icons/bs";
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
 import { GlowingGrid } from "@/components/effects/GlowingGrid";
 import { NeuralNetwork } from "@/components/effects/NeuralNetwork";
@@ -27,6 +28,17 @@ const certifications = [
     credentialUrl: "https://www.credly.com/badges/d7ff9979-5fb3-40c0-b66a-76def92bb006/public_url",
     icon: FaDatabase,
     accent: "from-violet-400/20 via-cyan-300/10 to-blue-500/20",
+  },
+  {
+    name: "Microsoft Certified: Azure AI Apps and Agents Developer Associate",
+    issuer: "Microsoft",
+    exam: "AI-103",
+    level: "Associate",
+    completed: "August 9, 2026",
+    credentialUrl: "https://learn.microsoft.com/api/credentials/share/en-us/POTHARLANKASESAANK-3938/60615822DE899ADA?sharingId=3686189FC2CA92C0",
+    icon: BsMicrosoft,
+    accent: "from-sky-400/20 via-cyan-300/10 to-violet-500/20",
+    buttonText: "✓ VERIFY CREDENTIAL",
   },
 ];
 
@@ -94,6 +106,27 @@ export function Certifications() {
 
                   <p className="mt-3 text-sm leading-7 text-zinc-400">Issued by {cert.issuer}</p>
 
+                  {(cert.exam || cert.level) && (
+                    <div className="mt-4 space-y-2 text-sm text-zinc-300">
+                      {cert.exam && (
+                        <p>
+                          <span className="font-medium text-white">Exam:</span> {cert.exam}
+                        </p>
+                      )}
+                      {cert.level && (
+                        <p>
+                          <span className="font-medium text-white">Level:</span> {cert.level}
+                        </p>
+                      )}
+                    </div>
+                  )}
+
+                  {cert.completed && (
+                    <p className="mt-4 text-sm font-medium text-cyan-200">
+                      Completed: {cert.completed}
+                    </p>
+                  )}
+
                   <div className="mt-8 flex items-end">
                     <a
                       href={cert.credentialUrl}
@@ -103,7 +136,7 @@ export function Certifications() {
                       aria-label={`View credential for ${cert.name}`}
                     >
                       <FaExternalLinkAlt className="h-4 w-4" />
-                      View Credential
+                      {cert.buttonText ?? "View Credential"}
                     </a>
                   </div>
                 </div>
