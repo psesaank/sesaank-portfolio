@@ -23,7 +23,7 @@ export function ScrollIndicator({ className, href = "#about", label = "Scroll to
       )}
       aria-label={label}
     >
-      <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-zinc-400 sm:text-[11px]">
+      <span className="text-[10px] font-medium uppercase tracking-[0.28em] text-[#a3a3a3] sm:text-[11px]">
         {label}
       </span>
 
@@ -36,7 +36,7 @@ export function ScrollIndicator({ className, href = "#about", label = "Scroll to
           animate={{ opacity: [0.4, 1, 0.4] }}
           transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }}
         >
-          <HiChevronDown className="h-4 w-4 text-cyan-300" />
+          <HiChevronDown className="h-4 w-4 text-[#ffb3aa]" />
         </motion.div>
       </motion.div>
     </motion.a>

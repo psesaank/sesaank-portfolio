@@ -18,7 +18,7 @@ export function Footer() {
           className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between"
         >
           <div>
-            <p className="text-sm font-medium uppercase tracking-[0.35em] text-cyan-400/80">
+            <p className="text-sm font-medium uppercase tracking-[0.35em] text-[#ffb3aa]">
               Portfolio
             </p>
             <h2 className="mt-3 text-2xl font-semibold tracking-tight text-white">
@@ -36,14 +36,14 @@ export function Footer() {
               href="https://github.com/psesaank"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               aria-label="GitHub"
             >
               <FaGithub className="h-4 w-4" />
             </a>
             <a
-              href="mailto:2300080153@kluniversity.in"
-              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+              href="mailto:sesaankpotharlanka2@gmail.com"
+              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               aria-label="Email"
             >
               <FaEnvelope className="h-4 w-4" />
@@ -52,7 +52,7 @@ export function Footer() {
               href={linkedInUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+              className="rounded-full border border-white/10 bg-white/[0.05] p-3 text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               aria-label="LinkedIn"
             >
               <FaLinkedin className="h-4 w-4" />

@@ -1,46 +1,36 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaAws, FaCode, FaDatabase, FaLaptopCode, FaMicrochip, FaServer, FaTools } from "react-icons/fa";
+import { FaCloud, FaDocker, FaMicrochip, FaPython, FaTools } from "react-icons/fa";
 import { AuroraBackground } from "@/components/effects/AuroraBackground";
 import { GlowingGrid } from "@/components/effects/GlowingGrid";
 import { NeuralNetwork } from "@/components/effects/NeuralNetwork";
 
 const skillGroups = [
   {
-    title: "Programming",
-    icon: FaCode,
-    skills: ["Python", "Java", "C", "SQL", "JavaScript"],
-  },
-  {
-    title: "Frontend",
-    icon: FaLaptopCode,
-    skills: ["HTML", "CSS", "React", "Tailwind CSS"],
-  },
-  {
-    title: "Backend",
-    icon: FaServer,
-    skills: ["FastAPI", "JDBC"],
-  },
-  {
-    title: "AI & Data Science",
+    title: "AI & ML",
     icon: FaMicrochip,
-    skills: ["Machine Learning", "Deep Learning", "TensorFlow", "OpenCV", "YOLO", "DeepFace"],
+    skills: ["Artificial Intelligence", "Machine Learning", "Deep Learning", "Generative AI"],
   },
   {
-    title: "Database",
-    icon: FaDatabase,
-    skills: ["MySQL", "SQLite"],
-  },
-  {
-    title: "Tools",
+    title: "Frameworks",
     icon: FaTools,
-    skills: ["Git", "GitHub", "Docker", "VS Code", "Postman"],
+    skills: ["TensorFlow", "PyTorch", "OpenCV"],
   },
   {
-    title: "Cloud",
-    icon: FaAws,
-    skills: ["AWS"],
+    title: "Cloud & Data",
+    icon: FaCloud,
+    skills: ["AWS", "Azure", "SQL", "MongoDB"],
+  },
+  {
+    title: "Programming",
+    icon: FaPython,
+    skills: ["Python", "SQL", "Git", "GitHub"],
+  },
+  {
+    title: "DevOps",
+    icon: FaDocker,
+    skills: ["Docker", "CI/CD", "Cloud AI"],
   },
 ];
 
@@ -63,7 +53,7 @@ export function Skills() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-cyan-400/80">
+          <p className="section-label">
             Skills
           </p>
           <h2 className="mt-4 text-3xl font-semibold tracking-tight text-white sm:text-4xl lg:text-5xl">
@@ -81,16 +71,16 @@ export function Skills() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.2 }}
                 transition={{ duration: 0.55, delay: 0.08 * index }}
-                whileHover={{ y: -6, scale: 1.01, boxShadow: "0 0 40px rgba(34,211,238,0.16)" }}
+                whileHover={{ y: -6, scale: 1.01, boxShadow: "0 0 40px rgba(255,26,10,0.16)" }}
                 className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.04] p-6 backdrop-blur-xl"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-400/10 via-transparent to-violet-500/10 opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
+                <div className="absolute inset-0 bg-gradient-to-br from-[#ff1a0a]/10 via-transparent to-[#b30000]/10 opacity-70 transition-opacity duration-300 group-hover:opacity-100" />
                 <div className="relative">
                   <div className="flex items-center justify-between">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/20 to-violet-500/20 text-cyan-300">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff1a0a]/20 to-[#b30000]/20 text-[#ffb3aa]">
                       <Icon className="h-5 w-5" />
                     </div>
-                    <span className="rounded-full border border-cyan-400/20 bg-cyan-400/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-cyan-300">
+                    <span className="rounded-full border border-[#ff1a0a]/20 bg-[#ff1a0a]/10 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.25em] text-[#ffb3aa]">
                       {group.title}
                     </span>
                   </div>
@@ -99,7 +89,7 @@ export function Skills() {
                     {group.skills.map((skill) => (
                       <span
                         key={skill}
-                        className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-sm text-zinc-200 transition-all duration-300 group-hover:border-cyan-400/30 group-hover:bg-cyan-400/10"
+                        className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-sm text-zinc-200 transition-all duration-300 group-hover:border-[#ff3b30]/30 group-hover:bg-[#ff1a0a]/10"
                       >
                         {skill}
                       </span>

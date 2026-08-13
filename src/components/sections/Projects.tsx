@@ -53,7 +53,7 @@ export function Projects() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-cyan-400/80">
+          <p className="section-label">
             Featured Projects
           </p>
           <h2
@@ -84,9 +84,9 @@ export function Projects() {
             whileHover={{ scale: 1.03, y: -1 }}
             whileTap={{ scale: 0.98 }}
             transition={{ duration: 0.2 }}
-            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-6 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(34,211,238,0.12)] backdrop-blur-md transition-all duration-300 hover:border-cyan-400/30 hover:bg-cyan-400/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950"
+            className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-6 py-3 text-sm font-medium text-white shadow-[0_0_30px_rgba(255,26,10,0.12)] backdrop-blur-md transition-all duration-300 hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff1a0a]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]"
           >
-            <FaGithub className="h-4 w-4 text-cyan-300" />
+            <FaGithub className="h-4 w-4 text-[#ffb3aa]" />
             View All Projects
           </motion.a>
         </motion.div>

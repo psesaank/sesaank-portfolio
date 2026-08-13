@@ -65,17 +65,17 @@ export function Navbar() {
         className={cn(
           "mx-auto flex max-w-6xl items-center justify-between px-4 py-4 transition-all duration-300 sm:px-6 lg:px-8",
           scrolled
-            ? "mt-3 rounded-2xl border border-white/10 bg-zinc-950/70 shadow-lg shadow-black/20 backdrop-blur-xl"
+            ? "mt-3 rounded-2xl border border-white/10 bg-[#0a0a0a]/80 shadow-[0_0_30px_rgba(255,26,10,0.18)] backdrop-blur-xl"
             : "bg-transparent",
         )}
         aria-label="Main navigation"
       >
         <a
           href="#hero"
-          className="group flex items-center gap-2 text-sm font-semibold tracking-tight text-white sm:text-base"
+          className="group flex items-center gap-2 text-sm font-semibold tracking-[0.18em] text-white sm:text-base"
         >
           <span
-            className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-cyan-400 to-violet-500 text-xs font-bold text-zinc-950"
+            className="flex h-8 w-8 items-center justify-center rounded-lg border border-[#ff1a0a]/40 bg-[#ff1a0a]/10 text-[10px] font-bold text-[#ff3b30]"
             aria-hidden="true"
           >
             PS
@@ -92,10 +92,10 @@ export function Navbar() {
                 href={item.href}
                 className={cn(
                   "relative rounded-lg px-4 py-2 text-sm transition-all duration-300",
-                  isActive ? "text-white" : "text-zinc-400 hover:text-white",
+                  isActive ? "text-white" : "text-[#a3a3a3] hover:text-white",
                 )}
               >
-                <span className="relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-gradient-to-r after:from-cyan-400 after:to-violet-500 after:transition-transform after:duration-300 hover:after:scale-x-100">
+                <span className="relative after:absolute after:bottom-[-4px] after:left-0 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-[#ff1a0a] after:transition-transform after:duration-300 hover:after:scale-x-100">
                   {item.label}
                 </span>
               </a>
@@ -125,13 +125,13 @@ export function Navbar() {
           initial={{ opacity: 0, y: -8 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -8 }}
-          className="mx-4 mt-2 rounded-2xl border border-white/10 bg-zinc-950/90 p-4 backdrop-blur-xl md:hidden"
+          className="mx-4 mt-2 rounded-2xl border border-white/10 bg-[#0a0a0a]/95 p-4 backdrop-blur-xl md:hidden"
         >
           {navItems.map((item) => (
             <a
               key={item.label}
               href={item.href}
-              className="mt-1 block rounded-lg px-4 py-3 text-sm text-zinc-300 transition-colors hover:bg-white/5 hover:text-white"
+              className="mt-1 block rounded-lg px-4 py-3 text-sm text-[#a3a3a3] transition-colors hover:bg-white/5 hover:text-white"
               onClick={() => setMobileOpen(false)}
             >
               {item.label}

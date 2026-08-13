@@ -9,49 +9,105 @@ import { NeuralNetwork } from "@/components/effects/NeuralNetwork";
 import { siteConfig } from "@/data/site";
 
 const linkedInUrl = "https://www.linkedin.com/in/sesaank-potharlanka-702306320/";
+const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+const validateField = (field: "name" | "email" | "message", value: string) => {
+  const trimmed = value.trim();
+
+  if (field === "name") {
+    if (!trimmed) return "Please enter your name.";
+    if (trimmed.length < 2) return "Name must be at least 2 characters.";
+    if (trimmed.length > 100) return "Name must be 100 characters or fewer.";
+    return "";
+  }
+
+  if (field === "email") {
+    if (!trimmed) return "Please enter your email.";
+    if (trimmed.length > 254) return "Email must be 254 characters or fewer.";
+    if (!emailPattern.test(trimmed)) return "Please enter a valid email address.";
+    return "";
+  }
+
+  if (!trimmed) return "Please enter a message.";
+  if (trimmed.length < 5) return "Message must be at least 5 characters.";
+  if (trimmed.length > 5000) return "Message must be 5000 characters or fewer.";
+  return "";
+};
 
 export function Contact() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [submitError, setSubmitError] = useState("");
 
   const validate = () => {
-    const nextErrors: { name?: string; email?: string; message?: string } = {};
-
-    if (!formData.name.trim()) {
-      nextErrors.name = "Please enter your name.";
-    }
-
-    if (!formData.email.trim()) {
-      nextErrors.email = "Please enter your email.";
-    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = "Please enter a valid email address.";
-    }
-
-    if (!formData.message.trim()) {
-      nextErrors.message = "Please enter a message.";
-    } else if (formData.message.trim().length < 20) {
-      nextErrors.message = "Please share a bit more detail so I can help.";
-    }
+    const nextErrors = {
+      name: validateField("name", formData.name),
+      email: validateField("email", formData.email),
+      message: validateField("message", formData.message),
+    };
 
     setErrors(nextErrors);
-    return Object.keys(nextErrors).length === 0;
+    return !nextErrors.name && !nextErrors.email && !nextErrors.message;
   };
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const handleFieldChange = (field: "name" | "email" | "message", value: string) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: validateField(field, value) || undefined }));
+    if (status === "success" || status === "error") {
+      setStatus("idle");
+    }
+    if (submitError) {
+      setSubmitError("");
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (!validate()) {
-      setStatus("error");
+    const nextErrors = {
+      name: validateField("name", formData.name),
+      email: validateField("email", formData.email),
+      message: validateField("message", formData.message),
+    };
+
+    setErrors(nextErrors);
+
+    if (nextErrors.name || nextErrors.email || nextErrors.message) {
+      setStatus("idle");
+      setSubmitError("");
       return;
     }
 
     setStatus("loading");
+    setSubmitError("");
 
-    window.setTimeout(() => {
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name.trim(),
+          email: formData.email.trim(),
+          message: formData.message.trim(),
+        }),
+      });
+
+      if (!response.ok) {
+        const payload = await response.json().catch(() => ({}));
+        throw new Error(payload.error || "Unable to send message.");
+      }
+
       setStatus("success");
       setFormData({ name: "", email: "", message: "" });
       setErrors({});
-    }, 900);
+      setSubmitError("");
+    } catch (error) {
+      console.error(error);
+      setStatus("error");
+      setSubmitError(error instanceof Error ? error.message : "Unable to send message.");
+    }
   };
 
   return (
@@ -72,7 +128,7 @@ export function Contact() {
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
           className="max-w-3xl"
         >
-          <p className="text-sm font-medium uppercase tracking-[0.35em] text-cyan-400/80">
+          <p className="section-label">
             Contact
           </p>
           <h2
@@ -92,19 +148,19 @@ export function Contact() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.7, delay: 0.08 }}
-            className="rounded-[28px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_0_45px_rgba(34,211,238,0.08)] backdrop-blur-xl"
+            className="rounded-[28px] border border-white/10 bg-white/[0.04] p-8 shadow-[0_0_45px_rgba(255,26,10,0.08)] backdrop-blur-xl"
           >
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-cyan-400/20 to-violet-500/20 text-cyan-200 shadow-[0_0_24px_rgba(34,211,238,0.12)]">
+              <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br from-[#ff1a0a]/20 to-[#b30000]/20 text-[#ffb3aa] shadow-[0_0_24px_rgba(255,26,10,0.12)]">
                 <FaEnvelope className="h-5 w-5" />
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-white">Email</h3>
                 <a
-                  href="mailto:2300080153@kluniversity.in"
-                  className="text-sm text-cyan-300 transition-colors hover:text-cyan-200"
+                  href="mailto:sesaankpotharlanka2@gmail.com"
+                  className="text-sm text-[#ffb3aa] transition-colors hover:text-[#ffd7d2]"
                 >
-                  2300080153@kluniversity.in
+                  sesaankpotharlanka2@gmail.com
                 </a>
               </div>
             </div>
@@ -116,18 +172,18 @@ export function Contact() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               >
-                <FaGithub className="h-4 w-4 text-cyan-300" />
+                <FaGithub className="h-4 w-4 text-[#ffb3aa]" />
                 GitHub
               </motion.a>
               <motion.a
-                href="mailto:2300080153@kluniversity.in"
+                href="mailto:sesaankpotharlanka2@gmail.com"
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               >
-                <FaEnvelope className="h-4 w-4 text-cyan-300" />
+                <FaEnvelope className="h-4 w-4 text-[#ffb3aa]" />
                 Email
               </motion.a>
               <motion.a
@@ -136,9 +192,9 @@ export function Contact() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-cyan-400/30 hover:bg-cyan-400/10"
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.05] px-4 py-2.5 text-sm text-zinc-200 transition-colors hover:border-[#ff1a0a]/30 hover:bg-[#ff1a0a]/10"
               >
-                <FaLinkedin className="h-4 w-4 text-cyan-300" />
+                <FaLinkedin className="h-4 w-4 text-[#ffb3aa]" />
                 LinkedIn
               </motion.a>
             </div>
@@ -168,8 +224,8 @@ export function Contact() {
                   id="name"
                   name="name"
                   value={formData.name}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
-                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/40"
+                  onChange={(event) => handleFieldChange("name", event.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-[#ff1a0a]/40"
                   placeholder="Your name"
                   aria-invalid={Boolean(errors.name)}
                 />
@@ -185,8 +241,8 @@ export function Contact() {
                   name="email"
                   type="email"
                   value={formData.email}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, email: event.target.value }))}
-                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/40"
+                  onChange={(event) => handleFieldChange("email", event.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-[#ff1a0a]/40"
                   placeholder="you@example.com"
                   aria-invalid={Boolean(errors.email)}
                 />
@@ -202,8 +258,8 @@ export function Contact() {
                   name="message"
                   rows={5}
                   value={formData.message}
-                  onChange={(event) => setFormData((prev) => ({ ...prev, message: event.target.value }))}
-                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/40"
+                  onChange={(event) => handleFieldChange("message", event.target.value)}
+                  className="w-full rounded-2xl border border-white/10 bg-zinc-950/70 px-4 py-3 text-sm text-white outline-none transition focus:border-[#ff1a0a]/40"
                   placeholder="Tell me about your idea or project..."
                   aria-invalid={Boolean(errors.message)}
                 />
@@ -215,7 +271,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="inline-flex min-w-[170px] items-center justify-center rounded-full border border-cyan-400/20 bg-cyan-400/10 px-5 py-3 text-sm font-medium text-cyan-200 transition-colors duration-300 hover:border-cyan-300/40 hover:bg-cyan-400/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950 disabled:cursor-not-allowed disabled:opacity-70"
+                className="inline-flex min-w-[170px] items-center justify-center rounded-full border border-[#ff1a0a]/20 bg-[#ff1a0a]/10 px-5 py-3 text-sm font-medium text-[#ffd7d2] transition-colors duration-300 hover:border-[#ff3b30]/40 hover:bg-[#ff1a0a]/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff1a0a]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505] disabled:cursor-not-allowed disabled:opacity-70"
               >
                 {status === "loading" ? "Sending..." : "Send Message"}
               </button>
@@ -223,8 +279,8 @@ export function Contact() {
               {status === "success" ? (
                 <p className="text-sm text-emerald-400">Thanks for reaching out. I&apos;ll get back to you soon.</p>
               ) : null}
-              {status === "error" ? (
-                <p className="text-sm text-amber-400">Please correct the highlighted fields and try again.</p>
+              {status === "error" && submitError ? (
+                <p className="text-sm text-amber-400">{submitError}</p>
               ) : null}
             </div>
           </motion.form>

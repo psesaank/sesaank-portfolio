@@ -17,29 +17,36 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: `${siteConfig.name} | AI & Data Science Portfolio`,
+    default: `${siteConfig.name} | AI & Machine Learning Portfolio`,
     template: `%s | ${siteConfig.name}`,
   },
-  description: `${siteConfig.role}. ${siteConfig.taglines.join(". ")}.`,
+  description: siteConfig.description,
   keywords: [
     "AI",
+    "Artificial Intelligence",
     "Machine Learning",
-    "Data Science",
-    "Full Stack Developer",
+    "Deep Learning",
+    "Generative AI",
+    "AI Engineering",
+    "TensorFlow",
+    "PyTorch",
     "AWS",
+    "Azure",
+    "Python",
+    "Data Science",
     siteConfig.name,
   ],
   authors: [{ name: siteConfig.name }],
   openGraph: {
-    title: `${siteConfig.name} | AI & Data Science Portfolio`,
-    description: siteConfig.role,
+    title: `${siteConfig.name} | AI & Machine Learning Portfolio`,
+    description: siteConfig.description,
     type: "website",
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} | AI & Data Science Portfolio`,
-    description: siteConfig.role,
+    title: `${siteConfig.name} | AI & Machine Learning Portfolio`,
+    description: siteConfig.description,
   },
   robots: {
     index: true,
@@ -53,10 +60,10 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       lang="en"
       className={`${inter.variable} ${jetbrainsMono.variable} h-full scroll-smooth`}
     >
-      <body className="min-h-full bg-zinc-950 font-sans text-zinc-50 antialiased">
+      <body className="min-h-full bg-[#050505] font-sans text-white antialiased">
         <a
           href="#hero"
-          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-cyan-400 focus:px-4 focus:py-2 focus:text-zinc-950"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[100] focus:rounded-lg focus:bg-[#ff1a0a] focus:px-4 focus:py-2 focus:text-white"
         >
           Skip to content
         </a>

@@ -14,8 +14,8 @@ interface GlassButtonProps {
 }
 
 const glowClasses = cn(
-  "border-white/10 hover:border-cyan-400/45",
-  "hover:bg-white/10 hover:shadow-[0_0_28px_rgba(34,211,238,0.25),0_0_56px_rgba(59,130,246,0.12)]",
+  "border-white/10 hover:border-[#ff1a0a]/45",
+  "hover:bg-[#ff1a0a]/10 hover:shadow-[0_0_28px_rgba(255,26,10,0.2),0_0_56px_rgba(179,0,0,0.12)]",
 );
 
 export function GlassButton({
@@ -29,7 +29,7 @@ export function GlassButton({
     "group relative inline-flex w-full items-center justify-center gap-2 overflow-hidden rounded-full sm:w-auto sm:min-w-[142px]",
     "border bg-white/5 px-5 py-2.5 text-sm font-medium text-white backdrop-blur-md sm:px-6 sm:py-3",
     "transition-[box-shadow,border-color,background-color] duration-300",
-    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950",
+    "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#ff1a0a]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#050505]",
     glowClasses,
     className,
   );
@@ -37,7 +37,7 @@ export function GlassButton({
   const content = (
     <>
       <span
-        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-blue-500/0 via-cyan-400/10 to-violet-500/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+        className="pointer-events-none absolute inset-0 bg-gradient-to-r from-[#b30000]/0 via-[#ff1a0a]/10 to-[#ff3b30]/0 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
         aria-hidden="true"
       />
       {icon}

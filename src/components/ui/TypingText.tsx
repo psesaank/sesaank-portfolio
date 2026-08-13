@@ -30,22 +30,19 @@ export function TypingText({
       return () => clearTimeout(pause);
     }
 
-    if (isDeleting && displayText === "") {
-      setIsDeleting(false);
-      setTextIndex((prev) => (prev + 1) % texts.length);
-      return;
-    }
+    const timeout = setTimeout(() => {
+      if (isDeleting && displayText === "") {
+        setIsDeleting(false);
+        setTextIndex((prev) => (prev + 1) % texts.length);
+        return;
+      }
 
-    const timeout = setTimeout(
-      () => {
-        setDisplayText((prev) =>
-          isDeleting
-            ? currentText.slice(0, prev.length - 1)
-            : currentText.slice(0, prev.length + 1),
-        );
-      },
-      isDeleting ? deletingSpeed : typingSpeed,
-    );
+      setDisplayText((prev) =>
+        isDeleting
+          ? currentText.slice(0, prev.length - 1)
+          : currentText.slice(0, prev.length + 1),
+      );
+    }, isDeleting ? deletingSpeed : typingSpeed);
 
     return () => clearTimeout(timeout);
   }, [
@@ -67,10 +64,10 @@ export function TypingText({
       aria-live="polite"
       aria-atomic="true"
     >
-      <span className="text-cyan-400/80">&gt; </span>
+      <span className="text-[#ff7a6d]">&gt; </span>
       {displayText}
       <span
-        className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse bg-cyan-400"
+        className="ml-0.5 inline-block h-[1.1em] w-[2px] translate-y-[2px] animate-pulse bg-[#ff1a0a]"
         aria-hidden="true"
       />
     </p>

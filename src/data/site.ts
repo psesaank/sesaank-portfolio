@@ -1,18 +1,21 @@
 export const siteConfig = {
   name: "Potharlanka Sesaank",
-  role: "Artificial Intelligence & Data Science Student",
+  role: "AI & Machine Learning Enthusiast",
   intro:
-    "Building intelligent AI applications, computer vision systems, and scalable full-stack solutions with a passion for solving real-world problems.",
+    "Building intelligent real-world solutions with AI, machine learning, and cloud-enabled systems.",
+  description:
+    "Potharlanka Sesaank is an AI & Machine Learning Enthusiast building intelligent applications with Python, TensorFlow, PyTorch, AWS, Azure, and generative AI.",
   taglines: [
-    "AI & Machine Learning Enthusiast",
-    "Computer Vision Developer",
-    "Full Stack Developer",
-    "AWS Certified Cloud Practitioner",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "Deep Learning",
+    "Generative AI",
+    "AI Engineering",
   ],
   focusAreas: [
-    "AI Engineer",
-    "ML Enthusiast",
-    "Full Stack Developer",
+    "Artificial Intelligence",
+    "Machine Learning",
+    "AI Engineering",
   ],
   profile: {
     image: "/profile.jpg",

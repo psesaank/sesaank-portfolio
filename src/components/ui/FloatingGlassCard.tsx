@@ -53,13 +53,13 @@ export function FloatingGlassCard({ className }: FloatingGlassCardProps) {
         transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
         className={cn(
           "relative w-full max-w-xs rounded-2xl border border-white/10 p-5 sm:p-6",
-          "bg-white/[0.04] shadow-2xl shadow-cyan-500/5 backdrop-blur-xl",
+          "bg-white/[0.04] shadow-2xl shadow-[#ff1a0a]/5 backdrop-blur-xl",
           "before:pointer-events-none before:absolute before:inset-0 before:rounded-2xl",
-          "before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-cyan-400/5",
+          "before:bg-gradient-to-br before:from-white/10 before:via-transparent before:to-[#ff1a0a]/5",
         )}
       >
         <div className="relative space-y-3" style={{ transform: "translateZ(20px)" }}>
-          <p className="text-xs font-medium uppercase tracking-widest text-cyan-400/80">
+          <p className="text-xs font-medium uppercase tracking-widest text-[#ff7a6d]">
             Focus Areas
           </p>
 
@@ -68,9 +68,9 @@ export function FloatingGlassCard({ className }: FloatingGlassCardProps) {
             return (
               <div
                 key={area}
-                className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2.5 transition-colors hover:border-cyan-400/20 hover:bg-white/[0.06]"
+                className="flex items-center gap-3 rounded-xl border border-white/5 bg-white/[0.03] px-3 py-2.5 transition-colors hover:border-[#ff1a0a]/20 hover:bg-white/[0.06]"
               >
-                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-blue-500/20 to-violet-500/20 text-cyan-300">
+                <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-[#b30000]/30 to-[#ff1a0a]/20 text-[#ffb3aa]">
                   <Icon className="h-3.5 w-3.5" aria-hidden="true" />
                 </span>
                 <span className="text-sm font-medium text-zinc-200">{area}</span>
@@ -83,7 +83,7 @@ export function FloatingGlassCard({ className }: FloatingGlassCardProps) {
           className="pointer-events-none absolute -inset-px rounded-2xl opacity-50"
           style={{
             background:
-              "linear-gradient(135deg, rgba(59,130,246,0.2), transparent 40%, rgba(168,85,247,0.15))",
+              "linear-gradient(135deg, rgba(255,26,10,0.2), transparent 40%, rgba(179,0,0,0.15))",
           }}
           aria-hidden="true"
         />
